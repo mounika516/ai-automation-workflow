@@ -1,12 +1,13 @@
-import pandas as pd
+import time
 from src.llm_client import screen_candidate
 
-def process_batch(input_file: str) -> list:
-    df = pd.read_csv(input_file)
+def process_batch(csv_path):
+    import pandas as pd
+    df = pd.read_csv(csv_path)
     results = []
     for _, row in df.iterrows():
-        profile = f"Name: {row['name']}, Skills: {row['skills']}, Experience: {row['experience']}"
+        profile = row.to_string()
         result = screen_candidate(profile)
-        result["name"] = row["name"]
         results.append(result)
+        time.sleep(4)  # stay within free tier rate limits
     return results

@@ -1,0 +1,54 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "0dc36287-6238-41ef-b19b-1147dab906fc",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "const candidates = [\n  { name: \"Alice Johnson\", skills: \"Python, NLP, Scikit-learn\", experience: \"3 years\" },\n  { name: \"Bob Smith\", skills: \"Java, Spring Boot\", experience: \"5 years\" },\n  { name: \"Carol White\", skills: \"Python, TensorFlow, Deep Learning\", experience: \"2 years\" }\n];\n\nconst results = candidates.map(c => ({\n  name: c.name,\n  score: 8,\n  skills_match: c.skills.split(\", \"),\n  recommendation: \"shortlist\",\n  reason: \"Skills match the requirements.\"\n}));\n\nreturn results.map(r => ({ json: r }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "7b6432da-d741-44c7-b23e-bf59fc1e7692",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "f5913dcc-85e0-4dec-955a-190f6cf2dd52",
+  "meta": {
+    "instanceId": "8ce49eed848aead30942c1f593c92411718486b3263fe2dd76a618c5578fd28c"
+  },
+  "id": "n8UNU1R2RSA4epYm",
+  "tags": []
+}
